@@ -4,6 +4,8 @@
 \definecolor{darkgray176}{RGB}{176,176,176}
 
 \begin{axis}[
+hide x axis,
+hide y axis,
 tick align=outside,
 tick pos=left,
 title={Truss Plot},
@@ -12,9 +14,11 @@ xlabel={\(\displaystyle x\)},
 xmin=-0.75, xmax=15.75,
 xtick style={color=black},
 y grid style={darkgray176},
+ylabel style={rotate=-90.0},
 ylabel={\(\displaystyle y\)},
-ymin=-4.14758064516129, ymax=8.14758064516129,
-ytick style={color=black}
+ymin=-6.25, ymax=10.25,
+ytick style={color=black},
+yticklabel style={anchor=center}
 ]
 \addplot [semithick, blue]
 table {%

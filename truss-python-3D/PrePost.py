@@ -13,6 +13,7 @@ import FEData as model
 import numpy as np
 import json
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 def create_model_json(DataFile):
@@ -41,6 +42,7 @@ def create_model_json(DataFile):
     # define the mesh
     model.x = np.array(FEData['x'])
     model.y = np.array(FEData['y'])  
+    model.z = np.array(FEData['z'])  
     model.IEN = np.array(FEData['IEN'], dtype=np.int)
     model.LM = np.zeros((model.nen*model.ndof, model.nel), dtype=np.int)
     set_LM()
@@ -51,7 +53,9 @@ def create_model_json(DataFile):
     model.leng  = np.sqrt(np.power(model.x[model.IEN[:, 1]-1] - 
                                    model.x[model.IEN[:, 0]-1], 2) +
                           np.power(model.y[model.IEN[:, 1]-1] - 
-                                   model.y[model.IEN[:, 0]-1], 2))
+                                   model.y[model.IEN[:, 0]-1], 2) +
+                          np.power(model.z[model.IEN[:, 1]-1] - 
+                                   model.z[model.IEN[:, 0]-1], 2))
     model.stress= np.zeros((model.nel,))
 
     # prescribed forces
@@ -105,9 +109,21 @@ def plottruss():
                     plt.text(XX[0], YY[0], str(model.IEN[i, 0]))
                     plt.text(XX[1], YY[1], str(model.IEN[i, 1]))
         elif model.ndof == 3:
-            # insert your code here for 3D
-            # ...
-            pass # delete or comment this line after your implementation for 3D
+            fig = plt.figure()
+            ax1 = plt.axes(projection='3d')
+
+            for i in range(model.nel):
+                XX = np.array([model.x[model.IEN[i, 0]-1], 
+                               model.x[model.IEN[i, 1]-1]])
+                YY = np.array([model.y[model.IEN[i, 0]-1], 
+                               model.y[model.IEN[i, 1]-1]])
+                ZZ = np.array([model.z[model.IEN[i, 0]-1], 
+                               model.z[model.IEN[i, 1]-1]])
+                ax1.plot3D(XX, YY, ZZ, "blue")
+
+                if model.plot_node == "yes":
+                    ax1.text(XX[0], YY[0], ZZ[0], str(model.IEN[i, 0]))
+                    ax1.text(XX[1], YY[1], ZZ[1], str(model.IEN[i, 1]))
         else:
             raise ValueError("The dimension (ndof = {0}) given for the \
                              plottruss is invalid".format(model.ndof))
@@ -154,9 +170,15 @@ def print_stress():
             c = (xe[1] - xe[0])/model.leng[e]
             model.stress[e] = const*(np.array([-c, -s, c, s])@de)
         elif model.ndof == 3:
-            # insert your code here for 3D
-            # ...
-            pass # delete or comment this line after your implementation for 3D
+            IENe = model.IEN[e] - 1
+            xe = model.x[IENe]
+            ye = model.y[IENe]
+            ze = model.z[IENe]
+            xe21 = (xe[1] - xe[0]) / model.leng[e]
+            ye21 = (ye[1] - xe[0]) / model.leng[e]
+            ze21 = (ze[1] - ze[0]) / model.leng[e]
+
+            model.stress[e] = const*(np.array([-xe21, -ye21, -ze21, xe21, ye21, ze21])@de)
         else:
             raise ValueError("The dimension (ndof = {0}) given for the \
                              problem is invalid".format(model.ndof))

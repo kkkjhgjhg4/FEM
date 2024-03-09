@@ -40,9 +40,18 @@ def plottruss_displacement(scale_factor):
                 plt.text(XX[0], YY[0], str(model.IEN[i, 0]))
                 plt.text(XX[1], YY[1], str(model.IEN[i, 1]))
     elif model.ndof == 3:
-            # insert your code here for 3D
-            # ...
-            pass # delete or comment this line after your implementation for 3D
+        for i in range(model.nel):
+            XX = np.array([model.x[model.IEN[i, 0]-1], 
+                           model.x[model.IEN[i, 1]-1]])
+            YY = np.array([model.y[model.IEN[i, 0]-1], 
+                           model.y[model.IEN[i, 1]-1]])
+            ZZ = np.array([model.z[model.IEN[i, 0]-1], 
+                           model.z[model.IEN[i, 1]-1]])
+            plt.plot(XX, YY, ZZ, "blue")
+
+            if model.plot_node == "yes":
+                plt.text(XX[0], YY[0], ZZ[0], str(model.IEN[i, 0]))
+                plt.text(XX[1], YY[1], ZZ[0], str(model.IEN[i, 1]))
     else:
         raise ValueError("The dimension (ndof = {0}) given for the \
                          plottruss is invalid".format(model.ndof))

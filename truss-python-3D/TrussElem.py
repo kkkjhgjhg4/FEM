@@ -49,7 +49,21 @@ def TrussElem(e):
         ze = model.z[IENe]
         xe21 = (xe[1] - xe[0]) / model.leng[e]
         ye21 = (ye[1] - xe[0]) / model.leng[e]
-        ze21 = (ze[1] - ze[0]) /model.leng[e]
+        ze21 = (ze[1] - ze[0]) / model.leng[e]
+        
+        xx = xe21 * xe21
+        xy = xe21 * ye21
+        xz = xe21 * ze21
+        yz = ye21 * ze21
+        yy = ye21 * ye21
+        zz = ze21 * ze21
+
+        ke = const * np.array([[xx, xy, xz, -xx, -xy, -xz],
+                               [xy, yy, yz, -xy, -yy, -yz],
+                               [xz, yz, zz, -xz, -yz, -zz],
+                               [-xx, -xy, -xz, xx, xy, xz],
+                               [-xy, -yy, -yz, xy, yy, yz],
+                               [-xz, -yz, -zz, xz, yz, zz]])
         
     else:
         raise ValueError("The dimension (ndof = {0}) given for the problem \

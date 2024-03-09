@@ -31,6 +31,7 @@ def solvedr():
     Returns:
         f_E : (numpy.array(nd,1)) Reaction force vector
     """
+
     nd = model.nd; neq=model.neq
     K_E = model.K[0:nd, 0:nd]
     K_F = model.K[nd:neq, nd:neq]

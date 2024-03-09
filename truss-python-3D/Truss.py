@@ -19,7 +19,7 @@ Created on Sat May 9 18:34:00 2020
 from sys import argv,exit
 import FEData as model
 from TrussElem import TrussElem
-from PrePost import create_model_json, print_stress, plottruss
+from PrePost import create_model_json, print_stress
 from utitls import assembly, solvedr
 
 from penalty_method import solve_penalty
