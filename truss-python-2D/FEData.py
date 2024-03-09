@@ -19,7 +19,7 @@ Global variables defining the FEM model
 
   x    : (numpy.array(nnp))x coordinate.
   y    : (numpy.array(nnp))y coordinates.
-  z    : (numpy.array(nnp))z coordinates.
+  
 
 
   IEN  : (numpy.array(nen,nel)) Element connectivity array.
@@ -53,7 +53,6 @@ stress= np.array([])
 
 x     = np.array([])
 y     = np.array([])
-z     = np.array([])
 IEN   = np.array([[]])
 LM    = np.array([[]])
 K     = np.array([[]])
