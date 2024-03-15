@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Bar.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Bar.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Bar.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Clock.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Clock.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Clock.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Domain.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Domain.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Domain.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/ElementGroup.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/ElementGroup.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/ElementGroup.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/LoadCaseData.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/LoadCaseData.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/LoadCaseData.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Material.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Material.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Material.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Node.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Node.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Node.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Outputter.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Outputter.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Outputter.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/Solver.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Solver.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/Solver.cpp"
+},
+{
+  "directory": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build",
+  "command": "/usr/bin/c++  -I/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/h -g -std=gnu++11 -o CMakeFiles/stap++.dir/cpp/main.cpp.o -c /home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/main.cpp",
+  "file": "/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/cpp/main.cpp"
+}
+]

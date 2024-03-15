@@ -1,0 +1,3 @@
+/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build/CMakeFiles/stap++.dir
+/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build/CMakeFiles/edit_cache.dir
+/home/bingqi/Finite_Element_Method/my_fem_repo/FEM/STAPpp/src/build/CMakeFiles/rebuild_cache.dir
