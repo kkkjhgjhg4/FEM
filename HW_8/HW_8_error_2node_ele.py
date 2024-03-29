@@ -69,7 +69,11 @@ def plot_log_error(number_of_elements):
         log_lengths[i] = np.log(element_length)
     
     log_errors = np.log(errors)
-    print('log(h):', log_lengths)
+
+    # Calculate and print slope and intercept
+    slope = (log_errors[1] - log_errors[0]) / (log_lengths[1] - log_lengths[0]) 
+    intercept = log_errors[1] - slope * log_errors[1]
+    print('Slope: ', slope, "Intercept: ", intercept)
 
     # Plot
     plt.figure(figsize=(10, 6))
