@@ -33,11 +33,11 @@ def calculate_error(number_of_elements, x_element_steps=1000):
     # Get Gauss points and weights
     w, gp = gauss(4)
     
-    total_error = 0
+    total_error_square = 0
     
     for i in range(number_of_elements):
         # Transform Gauss points to the current element's domain
-        x_gp = 0.5 * (1 + gp) * element_length + i * element_length
+        x_gp = 0.5 * (0 + element_length) + 0.5 * gp * (element_length - 0)
         
         # Calculate the estimated and real displacements at Gauss points
         ue1 = np.power(x_gp[0], 3)
@@ -46,8 +46,12 @@ def calculate_error(number_of_elements, x_element_steps=1000):
         real_disp = np.power(x_gp, 3)
         
         # Calculate error for the current element using Gauss quadrature
-        error = np.sum(w * np.power(estimated_disp - real_disp, 2)) * element_length / 2
-        total_error += error
+        error_square = np.sum(w * np.power(estimated_disp - real_disp, 2)) * element_length / 2
+        total_error_square += error_square
+
+    total_error = np.sqrt(total_error_square)
+    
+    print('Error of', number_of_elements, "elements is: ", total_error)
     
     return total_error
 
@@ -65,6 +69,7 @@ def plot_log_error(number_of_elements):
         log_lengths[i] = np.log(element_length)
     
     log_errors = np.log(errors)
+    print('log(h):', log_lengths)
 
     # Plot
     plt.figure(figsize=(10, 6))
