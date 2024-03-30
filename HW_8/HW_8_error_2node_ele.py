@@ -37,12 +37,14 @@ def calculate_error(number_of_elements, x_element_steps=1000):
     
     for i in range(number_of_elements):
         # Transform Gauss points to the current element's domain
-        x_gp = 0.5 * (0 + element_length) + 0.5 * gp * (element_length - 0)
+        xe1 = element_length * i
+        xe2 = element_length * (i + 1)
+        x_gp = 0.5 * (xe1 + xe2) + 0.5 * gp * (xe2 - xe1)
         
-        # Calculate the estimated and real displacements at Gauss points
-        ue1 = np.power(x_gp[0], 3)
-        ue2 = np.power(x_gp[-1], 3)
-        estimated_disp = ((x_gp[-1] - x_gp) * ue1 + (x_gp - x_gp[0]) * ue2) / element_length
+        # Calculate the estimated and real displacements at Transfered Gauss Points
+        ue1 = np.power(xe1, 3)
+        ue2 = np.power(xe2, 3)
+        estimated_disp = ((xe2 - x_gp) * ue1 + (x_gp - xe1) * ue2) / element_length
         real_disp = np.power(x_gp, 3)
         
         # Calculate error for the current element using Gauss quadrature
