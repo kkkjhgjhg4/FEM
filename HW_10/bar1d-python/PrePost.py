@@ -197,7 +197,8 @@ def disp_and_stress(e, d, ax1, ax2):
          
         Ee = N@model.E[IENe]      # Young's modulus   
         displacement[i] = N@de     # displacement output 
-        stress[i]       = Ee*B@de  # stress output s
+        stress[i]       = B@de  # stress output s
+         
          
     # plot displacements and stresses  
     line1, = ax1.plot(xplot,displacement)
