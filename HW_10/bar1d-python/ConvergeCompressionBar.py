@@ -85,6 +85,8 @@ axs[1,1].set_xscale('log')
 axs[1,1].set_yscale('log')
 axs[1,1].plot(h3,EnNorm3)
 
+plt.show()
+
 # Linear regression 
 print("The L2/energy error norms are ")
 

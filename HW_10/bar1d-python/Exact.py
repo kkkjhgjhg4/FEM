@@ -198,6 +198,66 @@ def ErrorNorm_CompressionBar():
     
     return 2/model.nel, L2Norm, EnNorm
 
+def ErrorNorm_HeatConduction():
+    """ 
+    Calculate and print the error norm (L2 norm) of the elastic 
+    bar under heat conduction in practice 3.17 for convergence study
+    """
+    
+    ngp = 3
+    [w, gp] = gauss(ngp)    # extract Gauss points and weights
+
+    bar_length = 20         # total length of the bar
+    
+    L2Norm = 0
+    natural_bc_error = 0   # nature boundary condition error, FE solution at nature boundary - exact nature boundary
+
+    L2NormEx = 0
+
+    
+    for e in range(model.nel):
+        
+        de = model.d[model.LM[:,e]-1] # extract element nodal displacements
+        IENe = model.IEN[:,e]-1       # extract local connectivity information
+        xe = model.x[IENe]            # extract element x coordinates
+        J = (xe[-1] - xe[0])/2        # compute Jacobian
+        
+        for i in range(ngp):
+            xt = 0.5*(xe[0]+xe[-1])+J*gp[i]  # Gauss points in physical coordinates
+            
+            N = Nmatrix1D(xt,xe)     # shape functions matrix
+            
+            uh  = N@de               # temperature at gauss point
+            uex = -10 * np.power(xt, 2) + 400 * xt # Exact temperature
+            L2Norm += J*w[i]*(uex - uh)**2
+            L2NormEx += J*w[i]*(uex)**2
+            
+        if e == model.nel - 1:
+            B = Bmatrix1D(bar_length / model.nel, xe)     # derivative of shape functions matrix
+            
+            Ee = N@model.E[IENe]     # Heat Conductiion coefficient k at element gauss points
+
+            
+            dT  = B@de               # derivative of temperature at Gauss points
+            q_h = -1 * Ee * dT
+            q_bc = 0                    # Exact natural boundary condition
+            
+            natural_bc_error = np.abs(q_h - q_bc)       # natural bc at the end of bar is 0 in practice 3.17
+    
+    L2Norm = sqrt(L2Norm)
+    
+    
+    
+    # print stresses at element gauss points
+    print('\nError norms')
+    print('%13s %13s %13s %13s '
+          %('h','L2Norm','L2NormRel','NaturalBC'))
+    print('%13.6E %13.6E %13.6E %13.6E\n'
+          %(bar_length / model.nel, L2Norm, L2Norm/L2NormEx, natural_bc_error))
+    
+    return bar_length / model.nel, L2Norm, natural_bc_error
+    
+
 
 def ErrorNorm_ConcentratedForce(flag):
     """
@@ -315,7 +375,7 @@ def ErrorNorm_ConcentratedForce(flag):
     EnNorm = sqrt(EnNorm)
     EnNormEx = sqrt(EnNormEx)
 
-    # print stresses at element gauss points
+    # print error
     print('\nError norms')
     print('%13s %13s %13s %13s %13s'
           % ('h', 'L2Norm', 'L2NormRel', 'EnNorm', 'EnNormRel'))
