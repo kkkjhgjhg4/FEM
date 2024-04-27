@@ -28,7 +28,6 @@ from utitls import assembly, solvedr
 
 
 def FERun(DataFile):
-	print('Runed')
 	# create FE model from DataFile in json format
 	create_model_json(DataFile)
 	

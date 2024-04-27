@@ -88,7 +88,6 @@ def create_model_json(DataFile):
 	model.x = np.array(FEData['x'])
 	model.y = np.array(FEData['y'])
 	model.IEN = np.array(FEData['IEN'], dtype=np.int_)
-	print(model.IEN)
 
 	# parameter for postprocess
 	model.counter = np.zeros((model.nnp, 1))
