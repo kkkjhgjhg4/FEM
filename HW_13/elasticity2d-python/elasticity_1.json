@@ -43,5 +43,6 @@
 	"plot_stress_xx": "yes", 
 	"plot_mises": "yes", 
 	"plot_tex": "no",
-	"fact": "9.221e3"
+	"fact": "9.221e3",
+	"print_disp":"no"
 }

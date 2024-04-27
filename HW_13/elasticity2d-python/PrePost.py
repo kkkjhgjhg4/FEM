@@ -87,7 +87,7 @@ def create_model_json(DataFile):
 	# define the mesh
 	model.x = np.array(FEData['x'])
 	model.y = np.array(FEData['y'])
-	model.IEN = np.array(FEData['IEN'], dtype=np.int)
+	model.IEN = np.array(FEData['IEN'], dtype=np.int_)
 
 	# parameter for postprocess
 	model.counter = np.zeros((model.nnp, 1))
@@ -105,8 +105,8 @@ def create_model_json(DataFile):
 
 	plot_mesh()
 
-	model.ID = np.zeros(model.neq, dtype=np.int)
-	model.LM = np.zeros((model.nen*model.ndof, model.nel), dtype=np.int)
+	model.ID = np.zeros(model.neq, dtype=np.int_)
+	model.LM = np.zeros((model.nen*model.ndof, model.nel), dtype=np.int_)
 	setup_ID_LM()
 
 
