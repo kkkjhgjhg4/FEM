@@ -1,0 +1,47 @@
+{
+	"Title": "Exercise 4-9 (2 Triangle elements)", 
+
+	"nsd": 2,
+	"ndof": 2, 
+	"nnp": 4,
+	"nel": 2, 
+	"nen": 3,
+ 
+ 	"E": 30e6,
+ 	"nu": 0.3, 
+  
+	"ngp": 2, 
+	"nd": 4, 
+ 
+	"flags": [2, 2, 2, 2, 0, 0, 0, 0],  
+ 
+	"nbe": 1, 
+	"n_bc": [
+		[2],
+		[4],  
+        [0], 
+        [-20], 
+        [0], 
+        [-20] 
+    ], 
+              
+	"x": [0.0, 0.0, 2.0, 2.0], 
+	"y": [0.0, 1.0, 0.5, 1.0], 
+ 
+	"IEN": [
+		[1, 2], 
+		[3, 3], 
+		[2, 4]
+	],
+ 
+	"plane_strain": 0,
+	"plot_mesh": "no", 
+	"plot_nod" : "no", 
+	"plot_disp": "no", 
+	"compute_stress": "no", 
+	"plot_stress_xx": "no", 
+	"plot_mises": "no", 
+	"plot_tex": "no",
+	"fact": "9.221e3",
+	"print_disp":"no"
+}

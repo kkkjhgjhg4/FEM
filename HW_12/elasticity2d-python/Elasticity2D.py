@@ -22,17 +22,21 @@ Created on Fri Jun 19 18:56:57 2020
 from sys import argv, exit
 from PrePost import create_model_json, point_and_trac, postprocess
 from Elast2DElem import Elast2DElem
+from Tri2DElem import Tri2DElem
 import FEData as model
 from utitls import assembly, solvedr
 
 
 def FERun(DataFile):
+	print('Runed')
 	# create FE model from DataFile in json format
 	create_model_json(DataFile)
+	
 
 	# Calculation and assembly of element matrices
 	for e in range(model.nel):
-		ke, fe = Elast2DElem(e)
+		# ke, fe = Elast2DElem(e)
+		ke, fe = Tri2DElem(e)
 		assembly(e, ke, fe)
 
 	# Compute and assemble nodal boundary force vector and point forces
