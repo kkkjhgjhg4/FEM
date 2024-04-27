@@ -34,8 +34,7 @@ def FERun(DataFile):
 
 	# Calculation and assembly of element matrices
 	for e in range(model.nel):
-		# ke, fe = Elast2DElem(e)
-		ke, fe = Tri2DElem(e)
+		ke, fe = Elast2DElem(e)
 		assembly(e, ke, fe)
 
 	# Compute and assemble nodal boundary force vector and point forces

@@ -29,6 +29,7 @@
 	"plot_mises": "yes",
 	"plot_tex": "no",
 	"fact": 9221,
+	"print_disp":"no",
 
 	"nbe": 8,
 	"n_bc": [
