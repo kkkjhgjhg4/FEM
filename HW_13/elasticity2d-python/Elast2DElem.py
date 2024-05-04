@@ -71,7 +71,7 @@ def Elast2DElem(e):
 			for I in range(model.nen):
 				DNNorm = DNNorm + DN[i,I] * DN[i,I]
 		
-		hourglass_k = 0.01 * model.G * DNNorm
+		hourglass_k = 0.1 * model.G * DNNorm
 
 		for I in range(model.nen):
 			for i in range(model.ndof):

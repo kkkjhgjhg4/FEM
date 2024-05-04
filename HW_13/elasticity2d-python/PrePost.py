@@ -253,6 +253,8 @@ def postprocess():
 			nodal_stress(e)
 
 		stress_contours()
+		#plot_stress_disp()
+		
 
 
 def displacement():
@@ -390,8 +392,9 @@ def stress_contours():
 		# sigma_xx contour
 		# The vmin and vmax of colorbar is different in different problems
 		# Please determine it by yourself for different cases.
-		vmin = -150
-		vmax = 200
+		fig, ax = plt.subplots()  # Create a figure and an axes.
+		vmin = -50
+		vmax = 50
 		norm = matplotlib.colors.Normalize(vmin=vmin, vmax=vmax)
 		for i in range(model.nel):
 			XX = [[model.x[model.IEN[0, i] - 1], model.x[model.IEN[1, i] - 1]],
@@ -417,7 +420,8 @@ def stress_contours():
 		plt.title(r'$\sigma_{xx}$ contours')
 		plt.xlabel(r'$X$')
 		plt.ylabel(r'$Y$')
-		plt.colorbar(matplotlib.cm.ScalarMappable(norm=norm, cmap='jet'))
+		plt.colorbar(matplotlib.cm.ScalarMappable(norm=norm, cmap='jet'), ax=ax)  # Specify the Axes object
+		
 
         	# Convert matplotlib figures into PGFPlots figures
 		if model.plot_tex == "yes":
@@ -430,8 +434,9 @@ def stress_contours():
 		# Von Mises stress contour
 		# The vmin and vmax of colorbar is different in different problems
 		# Please determine it by yourself for different cases.
+		fig, ax = plt.subplots()  # Create a figure and an axes.
 		vmin = 0
-		vmax = 250
+		vmax = 20000
 		norm = matplotlib.colors.Normalize(vmin=vmin, vmax=vmax)
 		for i in range(model.nel):
 			XX = [[model.x[model.IEN[0, i] - 1], model.x[model.IEN[1, i] - 1]],
@@ -462,7 +467,8 @@ def stress_contours():
 		plt.title(r'Von Mises $\sigma$ contours')
 		plt.xlabel(r'$X$')
 		plt.ylabel(r'$Y$')
-		plt.colorbar(matplotlib.cm.ScalarMappable(norm=norm, cmap='jet'))
+		plt.colorbar(matplotlib.cm.ScalarMappable(norm=norm, cmap='jet'), ax=ax)  # Specify the Axes object
+
         
 		# Convert matplotlib figures into PGFPlots figures
 		if model.plot_tex == "yes":
@@ -471,3 +477,77 @@ def stress_contours():
 		plt.savefig("elasticity-mises.pdf")
 		plt.show()
             
+
+def get_stress_at_line(e):
+	"""
+	Print the element stress on y = sqrt(3)/3.
+
+	Args:
+		e   : The element number
+	"""
+	de = model.d[model.LM[:, e] - 1]		# extract element nodal displacements
+
+	# get coordinates of element nodes
+	je = model.IEN[:, e] - 1
+	C = np.array([model.x[je], model.y[je]]).T
+
+	# compute strains and stresses at the element
+	strain = np.zeros((3, 1))
+	stress = np.zeros(3)
+	#eta = 0.1547 # for 2 * 10 mesh.
+	eta = np.sqrt(3)/3
+	psi = 1 # stress at certain y is the same through out the entire element, so x value does not matter
+	
+		
+	B, detJ = BmatElast2D(eta, psi, C)
+
+	strain[:, 0] = (B @ de).T.squeeze()
+	stress = (model.D @ (strain[:, 0].reshape((-1, 1)))).T.squeeze()
+	
+	print("\nStress_xx at y = sqrt(3)/12 :")
+	print(stress)
+	return stress
+
+def get_disp_at_0():
+	# get displacement from model.d
+	v=np.zeros(11)
+	for index in range(11):
+		v[index] = model.d[(index+1) * 6 - 1]
+	return v
+
+def plot_stress_disp():
+	# calculate the stress in an element(all stress are the same at same y coordinate)
+	stress = get_stress_at_line(1)
+
+	# calculate the disp at y=0
+	v = get_disp_at_0()
+
+	plt.figure(figsize=(12, 6))
+
+	# plot disp
+	x_disp=[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5]
+	plt.subplot(1, 2, 1)
+	plt.plot(x_disp, v, label='v displacement')
+	plt.title('Plot of v displacement')
+	plt.xlabel('x')
+	plt.ylabel('v')
+	plt.grid(True)
+	plt.legend()
+
+	# plot stress
+	x_stress = np.linspace(0, 5, 100)
+	plt.subplot(1, 2, 2)
+	plt.axhline(y=stress[0], color='r', label=f'stress_x')
+	plt.title('Plot of stress at y = sqrt(3)/12')
+	plt.xlabel('x')
+	plt.ylabel('stress')
+	plt.ylim(0, )  
+	plt.grid(True)
+	plt.legend()
+
+	plt.show()
+	
+
+
+
+
