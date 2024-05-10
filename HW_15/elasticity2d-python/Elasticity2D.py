@@ -29,6 +29,7 @@ from utitls import assembly, solvedr
 def FERun(DataFile):
 	# create FE model from DataFile in json format
 	create_model_json(DataFile)
+	
 
 	# Calculation and assembly of element matrices
 	for e in range(model.nel):
